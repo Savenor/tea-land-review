@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rate Your Experience - Tea Land</title>
+  <title>Google Review Portal</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
     .glass-card {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(12px);
     }
     .chip-active {
@@ -21,35 +21,38 @@
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-amber-950 flex items-center justify-center min-h-screen p-4">
+<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-blue-950 flex items-center justify-center min-h-screen p-4">
 
   <div class="glass-card max-w-md w-full rounded-3xl shadow-2xl p-7 border border-white/40 text-center relative overflow-hidden">
     
-    <!-- Top Branding Badge -->
-    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200/60 text-amber-900 text-xs font-semibold mb-4 tracking-wide uppercase">
-      <span>☕</span> Tea Land Bharatpur
+    <!-- Neutral Google Verified Badge -->
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-bold mb-4 tracking-wide uppercase">
+      <svg class="w-3.5 h-3.5 text-blue-600" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+      </svg>
+      <span id="businessTitle">Official Review Portal</span>
     </div>
 
-    <!-- Screen 1: Experience Choice (Good vs Bad) -->
+    <!-- Screen 1: Choice Screen -->
     <div id="choiceScreen">
-      <h2 class="text-2xl font-extrabold text-slate-900 mb-2 tracking-tight">How was your visit?</h2>
-      <p class="text-xs text-slate-500 mb-7">Tap an option to share your genuine experience with us</p>
+      <h2 class="text-2xl font-extrabold text-slate-900 mb-2 tracking-tight">How was your experience?</h2>
+      <p class="text-xs text-slate-500 mb-7">Tap an option to share your genuine feedback</p>
 
       <div class="grid grid-cols-1 gap-4">
         <!-- Good Option -->
-        <button onclick="openFlow('good')" class="group flex items-center justify-between p-4 rounded-2xl border-2 border-emerald-500/30 bg-emerald-50/50 hover:bg-emerald-50 hover:border-emerald-500 transition-all duration-200 active:scale-[0.98]">
+        <button onclick="openFlow('good')" class="group flex items-center justify-between p-4 rounded-2xl border-2 border-emerald-500/30 bg-emerald-50/50 hover:bg-emerald-50 hover:border-emerald-500 transition-all active:scale-[0.98]">
           <div class="flex items-center gap-4">
             <span class="text-3xl p-2 bg-white rounded-xl shadow-sm">😍</span>
             <div class="text-left">
               <h3 class="font-bold text-slate-900 text-base group-hover:text-emerald-700 transition">Loved It!</h3>
-              <p class="text-xs text-slate-500">Delicious taste & great vibes</p>
+              <p class="text-xs text-slate-500">Great quality, service & vibe</p>
             </div>
           </div>
           <span class="text-emerald-600 font-semibold text-sm">★★★★★</span>
         </button>
 
         <!-- Bad Option -->
-        <button onclick="openFlow('bad')" class="group flex items-center justify-between p-4 rounded-2xl border-2 border-rose-500/30 bg-rose-50/50 hover:bg-rose-50 hover:border-rose-500 transition-all duration-200 active:scale-[0.98]">
+        <button onclick="openFlow('bad')" class="group flex items-center justify-between p-4 rounded-2xl border-2 border-rose-500/30 bg-rose-50/50 hover:bg-rose-50 hover:border-rose-500 transition-all active:scale-[0.98]">
           <div class="flex items-center gap-4">
             <span class="text-3xl p-2 bg-white rounded-xl shadow-sm">😐</span>
             <div class="text-left">
@@ -69,29 +72,28 @@
         <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">5-Star Experience</span>
       </div>
 
-      <h3 class="text-lg font-bold text-slate-900 mb-1">What did you enjoy the most?</h3>
-      <p class="text-xs text-slate-500 mb-4">Tap tags to auto-create your review:</p>
+      <h3 class="text-lg font-bold text-slate-900 mb-1">What did you like the most?</h3>
+      <p class="text-xs text-slate-500 mb-4">Tap tags to auto-generate your review:</p>
 
-      <!-- Tags / Chips -->
+      <!-- Universal Multi-Business Tags -->
       <div class="flex flex-wrap gap-2 mb-4">
-        <button type="button" onclick="toggleGoodTag(this, 'The special tea and snacks were absolutely flavorful and freshly served.')" class="tag border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium px-3.5 py-2 rounded-xl transition-all">☕ Outstanding Tea</button>
-        <button type="button" onclick="toggleGoodTag(this, 'Super fast order turnaround and the staff is very warm and courteous.')" class="tag border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium px-3.5 py-2 rounded-xl transition-all">⚡ Quick Service</button>
-        <button type="button" onclick="toggleGoodTag(this, 'The cozy ambiance and cleanliness make it the best hangout spot in Bharatpur.')" class="tag border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium px-3.5 py-2 rounded-xl transition-all">✨ Relaxing Ambience</button>
-        <button type="button" onclick="toggleGoodTag(this, 'Loved the presentation, pocket-friendly pricing, and quality standards.')" class="tag border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium px-3.5 py-2 rounded-xl transition-all">💰 Value for Money</button>
-        <button type="button" onclick="toggleGoodTag(this, 'Highly recommended destination to chill with family and friends.')" class="tag border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium px-3.5 py-2 rounded-xl transition-all">👥 Friends & Family Spot</button>
+        <button type="button" onclick="toggleGoodTag(this, 'Exceptional quality and absolutely worth every penny.')" class="tag border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium px-3.5 py-2 rounded-xl transition-all">⭐ Top Quality</button>
+        <button type="button" onclick="toggleGoodTag(this, 'Super fast turnaround and very warm, polite and attentive staff.')" class="tag border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium px-3.5 py-2 rounded-xl transition-all">⚡ Quick & Polite Service</button>
+        <button type="button" onclick="toggleGoodTag(this, 'Loved the neat and clean atmosphere and welcoming ambiance.')" class="tag border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium px-3.5 py-2 rounded-xl transition-all">✨ Clean & Great Ambience</button>
+        <button type="button" onclick="toggleGoodTag(this, 'Truly authentic experience. Highly recommended to everyone!')" class="tag border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium px-3.5 py-2 rounded-xl transition-all">👍 Highly Recommended</button>
       </div>
 
-      <!-- Editable Review Area -->
-      <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Your Generated Review:</label>
-      <textarea id="goodReviewText" rows="3" class="w-full border border-slate-200 rounded-2xl p-3 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none text-slate-800 leading-relaxed bg-slate-50/50" placeholder="Tap tags above or type your thoughts here..."></textarea>
+      <!-- Generated Text Area -->
+      <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Your Review:</label>
+      <textarea id="goodReviewText" rows="3" class="w-full border border-slate-200 rounded-2xl p-3 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none text-slate-800 leading-relaxed bg-slate-50/50" placeholder="Tap tags above or type your experience..."></textarea>
 
-      <!-- Main Action Button -->
+      <!-- Action Button -->
       <button id="copyAndPostBtn" onclick="submitGoodReview()" class="mt-4 w-full bg-slate-900 hover:bg-black text-white font-bold py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 shadow-lg transition active:scale-[0.98]">
         <span>Copy & Open Google Review</span>
         <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
       </button>
 
-      <!-- Success Notification Pill -->
+      <!-- Notification Pill -->
       <div id="copyAlert" class="hidden mt-3 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-center">
         <p class="text-xs font-bold text-emerald-800 flex items-center justify-center gap-1.5">
           <span>✓</span> Text Copied! Opening Google Review...
@@ -110,38 +112,48 @@
       <h3 class="text-lg font-bold text-slate-900 mb-1">We value your honesty</h3>
       <p class="text-xs text-slate-500 mb-4">Please tell us where we fell short:</p>
 
-      <!-- Quick Issue Tags -->
       <div class="flex flex-wrap gap-2 mb-4">
-        <button type="button" onclick="toggleBadTag(this, 'Food or beverage quality/taste issue.')" class="tag border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium px-3.5 py-2 rounded-xl transition-all">🍽️ Taste / Temperature</button>
-        <button type="button" onclick="toggleBadTag(this, 'Order took unusually long to arrive.')" class="tag border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium px-3.5 py-2 rounded-xl transition-all">⏳ Slow Service</button>
-        <button type="button" onclick="toggleBadTag(this, 'Cleanliness or hygiene concern.')" class="tag border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium px-3.5 py-2 rounded-xl transition-all">🧹 Hygiene / Table</button>
-        <button type="button" onclick="toggleBadTag(this, 'Staff attentiveness / billing dispute.')" class="tag border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium px-3.5 py-2 rounded-xl transition-all">🧾 Staff / Bill Issue</button>
+        <button type="button" onclick="toggleBadTag(this, 'Quality or expectation not met.')" class="tag border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium px-3.5 py-2 rounded-xl transition-all">⚠️ Quality Issue</button>
+        <button type="button" onclick="toggleBadTag(this, 'Service was unusually slow or unmanaged.')" class="tag border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium px-3.5 py-2 rounded-xl transition-all">⏳ Slow Service</button>
+        <button type="button" onclick="toggleBadTag(this, 'Hygiene or cleanliness concerns.')" class="tag border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium px-3.5 py-2 rounded-xl transition-all">🧹 Cleanliness</button>
+        <button type="button" onclick="toggleBadTag(this, 'Staff behavior or billing issue.')" class="tag border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium px-3.5 py-2 rounded-xl transition-all">🧾 Staff / Bill</button>
       </div>
 
-      <!-- Feedback Area -->
       <label class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Detailed Remarks:</label>
       <textarea id="badFeedbackText" rows="3" class="w-full border border-slate-200 rounded-2xl p-3 text-xs focus:ring-2 focus:ring-rose-500 focus:outline-none text-slate-800 leading-relaxed bg-slate-50/50" placeholder="Help us rectify what went wrong..."></textarea>
 
-      <!-- Submit Feedback Button -->
       <button id="submitBadBtn" onclick="submitBadFeedback()" class="mt-4 w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-rose-200 transition active:scale-[0.98]">
         <span>Submit Review</span>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
       </button>
 
-      <!-- Feedback Sent Confirmation -->
       <div id="feedbackAlert" class="hidden mt-3 p-3 bg-slate-900 border border-slate-800 rounded-xl text-center text-white">
         <p class="text-xs font-bold text-emerald-400 flex items-center justify-center gap-1.5">
           <span>✓</span> Review Submitted Successfully!
         </p>
-        <p class="text-[10px] text-slate-300 mt-0.5">Our store owner has been notified immediately.</p>
+        <p class="text-[10px] text-slate-300 mt-0.5">The management team has been notified.</p>
       </div>
     </div>
 
   </div>
 
   <script>
-    const GOOGLE_REVIEW_URL = "https://www.google.com/travel/search?q=tea%20land%20bharatpur&g2lb=4965990%2C72471280%2C72573224%2C72686036%2C72803964%2C72882230%2C73064764%2C121529350%2C121608706%2C121738283%2C121921501%2C121951222%2C122035345%2C122078727%2C122093076%2C122097177%2C122121959%2C122134888&hl=en-IN&gl=in&ssta=1&ts=CAEaKwopEicyJTB4Mzk3M2EzYjVlZjRmMGU5ZDoweGU0Nzk0MjczZmEwZTRlOWU&qs=CAEyFENnc0lucDI1MExfTzBMemtBUkFCOAI&ap=ugEHcmV2aWV3cw&ictx=111&ved=0CAAQ5JsGahcKEwiAkun2x_-XAxUAAAAAHQAAAAAQBQ";
-    const OWNER_WHATSAPP_NUMBER = "917231890891";
+    // 1. URL से डायनामिक डेटा पढ़ना
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // अगर URL में नाम दिया है तो वो दिखाओ, वरना "Official Review Portal"
+    const bizName = urlParams.get('name');
+    if (bizName) {
+      document.getElementById('businessTitle').innerText = bizName;
+    }
+
+    // डिफ़ॉल्ट लिंक्स (Tea Land के लिए अगर URL खाली हो)
+    const DEFAULT_GOOGLE_URL = "https://www.google.com/travel/search?q=tea%20land%20bharatpur&g2lb=4965990%2C72471280%2C72573224%2C72686036%2C72803964%2C72882230%2C73064764%2C121529350%2C121608706%2C121738283%2C121921501%2C121951222%2C122035345%2C122078727%2C122093076%2C122097177%2C122121959%2C122134888&hl=en-IN&gl=in&ssta=1&ts=CAEaKwopEicyJTB4Mzk3M2EzYjVlZjRmMGU5ZDoweGU0Nzk0MjczZmEwZTRlOWU&qs=CAEyFENnc0lucDI1MExfTzBMemtBUkFCOAI&ap=ugEHcmV2aWV3cw&ictx=111&ved=0CAAQ5JsGahcKEwiAkun2x_-XAxUAAAAAHQAAAAAQBQ";
+    const DEFAULT_WHATSAPP = "917231890891";
+
+    // URL से Google Link और Phone निकालना
+    const activeGoogleUrl = urlParams.get('link') ? decodeURIComponent(urlParams.get('link')) : DEFAULT_GOOGLE_URL;
+    const activeWhatsApp = urlParams.get('phone') || DEFAULT_WHATSAPP;
 
     let selectedGoodSentences = [];
     let selectedBadSentences = [];
@@ -187,7 +199,7 @@
       document.getElementById('badFeedbackText').value = selectedBadSentences.join(" ");
     }
 
-    // Fail-safe clipboard helper
+    // Fallback Clipboard Logic
     function copyTextFallback(text) {
       const textArea = document.createElement("textarea");
       textArea.value = text;
@@ -200,7 +212,7 @@
       try {
         document.execCommand('copy');
       } catch (e) {
-        console.warn("Fallback copy failed", e);
+        console.warn("Clipboard fallback error", e);
       }
       document.body.removeChild(textArea);
     }
@@ -215,7 +227,7 @@
 
       const redirect = () => {
         setTimeout(() => {
-          window.location.href = GOOGLE_REVIEW_URL;
+          window.location.href = activeGoogleUrl;
         }, 1200);
       };
 
@@ -238,17 +250,18 @@
       const actionBtn = document.getElementById('submitBadBtn');
 
       if (!text) {
-        alert("Please select or type your feedback before submitting.");
+        alert("Please write or select your feedback before submitting.");
         return;
       }
 
       actionBtn.classList.add('opacity-50', 'pointer-events-none');
       feedbackAlert.classList.remove('hidden');
 
-      const payload = encodeURIComponent("🚨 *Private Customer Review Alert* 🚨\n\nBranch: Tea Land Bharatpur\nStatus: Unhappy Experience\nCustomer Feedback:\n\"" + text + "\"");
+      const title = bizName ? bizName : "Store Management";
+      const payload = encodeURIComponent(`🚨 *Customer Feedback Alert* 🚨\n\nEntity: ${title}\nIssue Reported:\n"${text}"`);
       
       setTimeout(() => {
-        window.location.href = `https://wa.me/${OWNER_WHATSAPP_NUMBER}?text=${payload}`;
+        window.location.href = `https://wa.me/${activeWhatsApp}?text=${payload}`;
       }, 1500);
     }
   </script>
